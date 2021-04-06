@@ -1,0 +1,100 @@
+% !TeX root = index.tex
+\section{High School Arithmetic}
+We will consider addition in the group $\bbz/100$. Denote the elements of $\bbz/100$ by $\tens{a}\units{b}$ where $a,b \in \set {0, 1, \dots, 9}$.
+
+\subsection{The carry function}
+\begin{mdframed}
+  \adjustbox{scale=1,center}{%
+    \begin{tikzcd}
+      &\mbox{Adding 2-digit numbers}
+        \ar[ddddl, leftrightarrow]
+        % \ar[ddddr, leftrightarrow, end anchor={[xshift=0ex]}]
+        &
+      \\\\\\\\
+      \mbox{2-cocycle condition}
+      % \ar[rr, dashed, leftrightarrow]
+      & & \text{\color{white} Group extensions}
+    \end{tikzcd}
+  }
+\end{mdframed}
+
+
+Addition in $\bbz/100$ is defined by the formula
+\begin{equation}
+  \label{equation:additionFormula}
+  \tens{a_1}\units{b_1} + \tens{a_2}\units{b_2}
+  =
+  \tens{a_1 + a_2 + c(b_1, b_2)}\units{b_1 + b_2}
+\end{equation}
+where $c: \bbz/10 \times \bbz/10 \rightarrow \bbz/10$ is the ``carry'' function
+
+\begin{qbox}
+  Give an explicit definition of the carry function $c$.
+\end{qbox}
+
+\begin{qbox}
+  Is $c$ a group homomorphism?
+\end{qbox}
+
+The binary operation on abelian groups satisfies the following three properties:
+\begin{enumerate}
+  \item identity: $\qquad x + 0 = x = 0 + x$,
+  \item commutativity: $\qquad x+y = y+x$,
+  \item associativity: $\qquad (x+y)+z = x + (y+z)$.
+\end{enumerate}
+
+\begin{qbox}
+  Using Equation \eqref{equation:additionFormula} and the fact that $\bbz/100$ is an abelian group, determine the corresponding identities the function $c$ satisfies?
+\end{qbox}
+Such a function $c$ has a very fancy name, it is called a
+\begin{align*}
+  \underbrace{\mathrm{normalized}}_{\mathrm{identity}}
+  \underbrace{\mathrm{symmetric}}_{\mathrm{commutativity}}
+  \underbrace{\mathrm{2-cocycle}}_{\mathrm{associativity}}.
+\end{align*}
+
+\begin{qbox}
+  \label{q:cocycleDefinesGroup}
+  Conversely, show that if a function $c: \bbz/10 \times \bbz/10 \rightarrow \bbz/10$ is a normalized, symmetric, 2-cocycle then ``defining'' an addition on $\bbz/100$ using Equation \ref{equation:additionFormula} defines an abelian group structure on it.\hint{The only new thing you need to check is that inverses exist.}
+\end{qbox}
+
+% \begin{qbox}
+%    Let $0 \le k < 10$ be an integer. Check that \begin{align*}
+%     c_k: \bbz/10 \times \bbz/10 &\rightarrow \bbz/10\\
+%     c_k(b_1,b_2) &=
+%       \begin{cases}
+%         0 & \mbox{if } b_1 + b_2 < 10, \\
+%         k & \mbox{if } b_1 + b_2 \ge 10.
+%       \end{cases}
+%   \end{align*} is also a normalized symmetric 2-cocycle.
+% \end{qbox}
+
+% Let $N_k = \set{ \tens{a} \units{b}}$ be the set of two-digit numbers with addition defined as
+% \begin{align*}
+%   +_k: N_k \times N_k
+%     &\longrightarrow N_k, \\
+%   \tens{a_1}\units{b_1} +_k \tens{a_2}\units{b_2}
+%     &=
+%     \tens{a_1 + a_2 + c_k(b_1, b_2)}\units{b_1 + b_2}.
+% \end{align*}
+%
+% By Q.\ref{q:cocycleDefinesGroup}, $(N_k, +_k)$ is an abelian group.
+
+Using 2-cocycles, it is possible to create some very exotic ``carry functions''.
+\begin{qbox}
+  \label{q:symmetricCocycles}
+  Come up with other examples of normalized, symmetric, 2-cocycles $c:\bbz/10 \times \bbz/10 \rightarrow \bbz/10$.
+\end{qbox}
+
+There are exactly 4 isomorphism classes of abelian groups of order 100:
+  \begin{equation*}
+    \bbz/100,\quad \bbz/50 \times \bbz/2, \quad \bbz/20 \times \bbz/5, \quad \bbz/10 \times \bbz/10.
+  \end{equation*}
+
+\begin{qbox}
+  Each of the examples of carry functions $c$ you found in Q.\ref{q:symmetricCocycles} defines an abelian group structure on the set of 2-digit numbers. Find its isomorphism class.
+\end{qbox}
+
+\begin{qbox}[Bonus Question]
+  Can you find all the normalized, symmetric, 2-cocycles $c:\bbz/10 \times \bbz/10 \rightarrow \bbz/10$? (I do not know any way to answer this question without using group cohomology computations. It would be amazing if you could solve this problem by some elementary methods.)
+\end{qbox}

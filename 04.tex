@@ -1,0 +1,179 @@
+\section{What's going on?}
+We get a lot of mileage by looking at the following correspondence.
+\begin{mdframed}
+  \adjustbox{scale=1,center}{%
+    \begin{tikzcd}
+      \set{\mbox{2-cocycles}}\ar[rrr, dashed, leftrightarrow]& & & \set{\mbox{Group extensions}}
+    \end{tikzcd}
+  }
+\end{mdframed}
+There is no direct way to go from a group extension to a 2-cocycle, we need to first write the group $G$ as 2-digit numbers $\tens{a}\units{b}$ where $a \in H$ and $b \in K$.
+The 2-cocycle then arises as the carry function.
+
+This correspondence is not a one-to-one correspondence. There are many more cocycles than there are group extensions.
+To get a 1-1 correspondence, we need to take the quotient of the left-hand side by the set of 2-coboundaries and the right-hand side by isomorphisms.
+\begin{mdframed}
+  \adjustbox{scale=1,center}{%
+    \begin{tikzcd}
+      \dfrac{\set{\mbox{2-cocycles}}}{\set{\mbox{2-coboundaries}}}
+      \ar[rrr, dashed, leftrightarrow, "1-1"]
+      & & &
+      \dfrac{\set{\mbox{Group extensions}}}{\set{\mbox{isomorphisms}}} \\
+      \dfrac{\calz^2(K;H)}{\calb^2(K;H)} \ar[u, equal]
+      & & & \\
+      \calh^2(K;H)
+        \ar[u, equal]
+        \ar[rrr, leftrightarrow, "1-1"]
+      & & &
+      \ext^1(K;H) \ar[uu, equal]
+    \end{tikzcd}
+  }
+\end{mdframed}
+Let us try to understand this correspondence by an example.
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Example}
+Consider the case that we started with $H = K = \bbz/10$ so that the group extensions are groups consisting of 2-digit numbers and hence have sizes $100$.
+Let $c_k = k \left \lfloor \dfrac{b_1 + b_2}{10}  \right \rfloor$ be the standard carry function multiplied by $k$. By repeatedly adding $\tens{0}\units{1}$ to itself, one can easily find the isomorphism types of the resulting group extensions.
+\begin{center}
+  \begin{tabular}{|r|l|}
+    \hline
+    carry  & isomorphism\\
+    function & class \\\hline
+    $c_1$ & $\bbz/100$ \\
+    $c_2$ & $\bbz/50 \times \bbz/2$ \\
+    $c_3$ & $\bbz/100$ \\
+    $c_4$ & $\bbz/50 \times \bbz/2$ \\
+    $c_5$ & $\bbz/20 \times \bbz/5$ \\
+    $c_6$ & $\bbz/50 \times \bbz/2$ \\
+    $c_7$ & $\bbz/100$ \\
+    $c_8$ & $\bbz/50 \times \bbz/2$ \\
+    $c_9$ & $\bbz/100$ \\
+    $c_0$ & $\bbz/10 \times \bbz/10$ \\\hline
+  \end{tabular}
+\end{center}
+Turns out, these are all the group extensions upto isomorphism.
+The following is a theorem from algebraic topology,
+\begin{theorem}
+  The second group cohomology of $\bbz/10$ with coefficients in $\bbz/10$ is given by \label{theorem:cohomologyOfZ10}
+    \begin{align*}
+      H^2(\bbz/10; \bbz/10) \cong \bbz/10.
+    \end{align*}
+    A generator for this cohomology group is given by $c_1$.
+\end{theorem}
+We can use this theorem to make rapid computions of isomorphism classes.
+\begin{proposition}
+  The group extension corresponding to the carry function $d(b_1, b_2) = 2 b_1 b_2$ is given by $\bbz/10 \times \bbz/10$.
+\end{proposition}
+\begin{proof}
+  We know that $c_0$ gives rise to the group extension $\bbz/10 \times \bbz/10$.
+  It suffices to show that there exists a 2-coboundary $\alpha:\bbz/10 \rightarrow \bbz/10$ such that
+  \begin{align*}
+    d(b_1) - c_0(b_1) &= \alpha(b_1) + \alpha(b_2) - \alpha(b_1 + b_2) \\
+    \Longleftrightarrow 2 b_1 b_2 &= \alpha(b_1) + \alpha(b_2) - \alpha(b_1 + b_2)
+  \end{align*}
+  $\alpha(x) = -x^2$ works.
+\end{proof}
+\begin{proposition}
+  The group extension corresponding to the carry function $e(b_1, b_2) = b_1 b_2$ is either $\bbz/20 \times \bbz/5$ or $\bbz/10 \times \bbz/10$.
+\end{proposition}
+\begin{proof}
+  This is because $d = 2 e$ where $d$ is as in the previous proposition.
+  And $c_0 = 2 c_5$ and $c_0 = 2 c_0$. Hence, $e$ must correspond to either $\bbz/20 \times \bbz/5$ or $\bbz/10 \times \bbz/10$.
+\end{proof}
+Thus cohomology allows us to reduce questions about reduce questions about isomorphism classes of group extensions to solving identities among functions.
+However, many a times it only provides partial information and we still need to put in more effort to find the final answer.
+
+
+
+
+\subsection{Group cohomology}
+  For each positive integer $n$, let $\calc^n(K;H)$ be the set of functions from $K^{\times n}$ to $H$.
+  \begin{align*}
+    \calc^n(K;H) = \{ \underbrace{K \times \dots \times K}_{n-\text{times}} \rightarrow H \}
+  \end{align*}
+
+  There is a differential function $d^n: \calc^n(K;H) \rightarrow \calc^{n+1}(K;H)$ which takes a function that has $n$ inputs and produces a function that has $n+1$ inputs, defined as follows
+  \begin{align*}
+    (d^n \varphi) (k_1, k_2, k_3, \dots, k_n, k_{n+1})
+    &:=
+    \varphi (k_2, k_3, \dots, k_n, k_{n+1}) \\
+    & -
+    \varphi (k_1 + k_2, k_3, \dots, k_n, k_{n+1}) \\
+    & +
+    \varphi (k_1, k_2 + k_3, \dots, k_n, k_{n+1}) \\
+    & \mp \dots \pm \\
+    & (-1)^n \varphi (k_1, k_2 + k_3, \dots, k_n + k_{n+1}) \\
+    & (-1)^{n+1} \varphi (k_1, k_2 + k_3, \dots, k_n) \\
+  \end{align*}
+  where $\varphi$ is a function $K^{\times n} \rightarrow H$.
+
+  \begin{ex}
+    For $c:K \times K \rightarrow H$
+    \begin{align*}
+      (d^2 \varphi) (k_1, k_2, k_3)
+      &=
+      \varphi(k_2, k_3)
+      -
+      \varphi(k_1 + k_2, k_3)
+      +
+      \varphi(k_1, k_2 + k_3)
+      -
+      \varphi(k_1, k_2).
+    \end{align*}
+  \end{ex}
+  \begin{ex}
+    For $\alpha: K \rightarrow H$
+    \begin{align*}
+      (d^1 \alpha)(k_1, k_2)
+      &=
+      \alpha(k_1) - \alpha(k_1 + k_2) + \alpha(k_2)
+    \end{align*}
+  \end{ex}
+
+  From the above examples, one can see that $c$ is a 2-cocycle precisely when $d^2 c = 0$ and $c$ is a 2-coboundary when $c = d^1 \alpha$ for some $\alpha$.
+
+  \begin{definition}
+    The set of $n$-cocycles is the kernel of $ d^n$ and the set of $n$-coboundaries is the image of $d^{n-1}$.
+    \begin{align*}
+      \calz^n(K;H) := \set{n-\mbox{cocycles}} &= \ker d^n \\
+      \calb^n(K;H) := \set{(n-1)-\mbox{cocycles}} &= \im d^{n-1}
+    \end{align*}
+    The $n^{th}$ group cohomology group of the group $K$ with coefficients in $H$ is the quotient
+    \begin{align*}
+      \calh^n(K;H) := \calz^n(K;H) / \calb^n(K;H) = \ker d^n / \im d^{n-1}
+    \end{align*}
+  \end{definition}
+
+  The other group cohomologies also have different meanings.
+  \begin{ex}
+    A 1-coboundary is a map $\alpha: K \rightarrow H$ such that $d^1 \alpha = 0$.
+    Expanding this out, we get
+    \begin{align*}
+      \alpha(k_1) - \alpha(k_1 + k_2) + \alpha(k_2) &= 0 \\
+      \alpha(k_1) + \alpha(k_2) &= \alpha(k_1 + k_2)
+    \end{align*}
+    But this means that $\alpha$ is a group homomorphism!
+    Thus, 1-cocycles are exactly group homomorphisms.
+    Further, there are no 1-coboundaries and hence
+    \begin{align*}
+      \calh^1(K;H) := \{ \mbox{group homomorphisms }K \rightarrow H \}
+    \end{align*}
+  \end{ex}
+
+  Thus we have
+  \begin{align*}
+    \mbox{first group cohomology} & \longleftrightarrow \mbox{ group homomorphisms }\\
+    \mbox{second group cohomology} & \longleftrightarrow \mbox{ group extensions }\\ \mbox{higher group cohomology} & \longleftrightarrow \mbox{ ?? }
+  \end{align*}
+
+What the higher group cohomologies mean is a very subtle question and computing and studying this forms a branch of mathematics called \emph{homological algebra}.

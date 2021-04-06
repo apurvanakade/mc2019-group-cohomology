@@ -1,0 +1,34 @@
+% \tableofcontents
+\cleardoublepage
+\pagenumbering{roman}
+  \maketitle
+\tableofcontents
+$\: $
+\vspace{1cm}
+\newpage
+\setlength{\epigraphwidth}{\textwidth}
+\epigraph{\it Perhaps I can best describe my experience of doing mathematics in terms of a journey through a dark unexplored mansion. You enter the first room of the mansion and it’s completely dark. You stumble around bumping into the furniture, but gradually you learn where each piece of furniture is. Finally after six months or so, you find the light switch, you turn it on, and suddenly it’s all illuminated. You can see exactly where you were. Then you move into the next room and spend another six months in the dark. So each of these breakthroughs, while sometimes they’re momentary, sometimes over a period of a day or two, they are the culmination of—and couldn’t exist without—the many months of stumbling around in the dark that precede them.}{Andrew Wiles}
+\vspace{2cm}
+
+\section*{Introduction}
+In this class, our goal is to understand how the simple operation of adding multi-digit numbers using the ``carrying process'' is really an example of a much general structure, called a group extension, which in turn is related to group cohomology.
+
+We will start with the very concrete world of arithmetic, and gradually increase the level of abstraction and eventually define some form of group cohomology.
+We will mostly work with abelian groups, and time permitting will switch to non-abelian groups toward the end.\\\\
+
+Today, we want to understand how the following are equivalent to each other.
+\begin{mdframed}
+  \adjustbox{scale=1,center}{%
+    \begin{tikzcd}
+      &\mbox{Adding 2-digit numbers}
+        \ar[ddddl, leftrightarrow]
+        \ar[ddddr, leftrightarrow, end anchor={[xshift=0ex]}]
+        &
+      \\\\\\\\
+      \mbox{2-cocycle condition}\ar[rr, dashed, leftrightarrow]& & \text{Group extensions}
+    \end{tikzcd}
+  }
+\end{mdframed}
+
+\cleardoublepage
+\pagenumbering{arabic}

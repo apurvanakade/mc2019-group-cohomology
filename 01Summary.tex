@@ -1,0 +1,45 @@
+\section*{Summary of Section 1}
+\begin{itemize}
+  \item Addition in $\bbz/100$ is defined by the formula
+  \begin{equation*}
+    \tens{a_1}\units{b_1} + \tens{a_2}\units{b_2}
+    =
+    \tens{a_1 + a_2 + c(b_1, b_2)}\units{b_1 + b_2}
+  \end{equation*}
+  where $c: \bbz/10 \times \bbz/10 \rightarrow \bbz/10$ is the ``carry'' function.
+  Unravelling the axioms of abelian groups we see that $c$ satisfies the following three identities:
+  \begin{enumerate}
+    \item $c(b_1, 0) = 0 = c(0,b_1)$,
+    \item $c(b_1, b_2) = c(b_2, b_1)$,
+    \item $c(b_1, b_2) + c(b_1 + b_2, b_3) = c(b_1 , b_2 + b_3) + c(b_2, b_3)$.
+  \end{enumerate}
+  Such a function $c$ is called a \emph{normalized, symmetric, 2-cocycle}.
+
+  \item We now flip the tables and ``define'' an addition on the set of 2-digit numbers by the formula $\tens{a_1}\units{b_1} + \tens{a_2}\units{b_2}
+  =
+  \tens{a_1 + a_2 + c(b_1, b_2)}\units{b_1 + b_2}$ where $c$ is any normalized, symmetric, 2-cocycle.
+
+  \item Examples:
+    \begin{enumerate}
+      \item $c(b_1, b_2) = \left \lfloor \dfrac{b_1 + b_2}{10}  \right \rfloor $ defines the standard addition on $\bbz/100$.
+      \item $c(b_1, b_2) = 0$ defines the addition in which the set of 2-digit numbers becomes $\bbz/10 \times \bbz/10$.
+      \item $c(b_1, b_2) = k\left \lfloor \dfrac{b_1 + b_2}{10}  \right \rfloor$ for any integer $k$ defines an addition on the set of 2-digit numbers, the isomorphism class of the resulting abelian group depends on $k \mod 10$.
+      \item $c(b_1, b_2) = b_1 b_2$ defines an addition on the set of 2-digit numbers, and resulting group is $\bbz/20 \times \bbz/5$.
+    \end{enumerate}
+\end{itemize}
+
+
+There are exactly 4 isomorphism classes of abelian groups of order 100:
+  \begin{equation*}
+    \bbz/100,\quad \bbz/50 \times \bbz/2, \quad \bbz/20 \times \bbz/5, \quad \bbz/10 \times \bbz/10.
+  \end{equation*}
+\begin{q*}
+  How do we know which abelian group is being created by using a particular addition?
+\end{q*}
+\begin{proof}[Answer]
+  The four groups $\bbz/100$, $\bbz/50 \times \bbz/2$, $\bbz/20 \times \bbz/5$, $\bbz/10$ can be differentiated in the following way:
+  $\bbz/100$ contains an element of order 100,
+  $\bbz/50 \times \bbz/2$ contains an element of order 50 but not of order 100,
+  $\bbz/20 \times \bbz/5$ contains an element of order 20 but not of order 100,
+  the order of every element of $\bbz/10 \times \bbz/10$ is at most 10.
+\end{proof}

@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{style/preamble}
+\usepackage{style/mytikz}
+\usepackage{style/mycite}
+\usepackage{afterpage}
+\usepackage{parskip}
+\usepackage{adjustbox}
+\usepackage{epigraph}
+
+\newcommand{\tens}[1]{\left[\: #1 \:\right]}
+\newcommand{\units}[1]{\left[\: #1 \:\right]}
+\DeclareMathOperator{\ext}{Ext}
+
+\title{From High School Arithmetic to Group Cohomology}
+\author{Apurva Nakade}
+\date{}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Mathcamp 2019}
+\lhead{Arithmetic $\implies$ Cohomology}
+\cfoot{\thepage}
+
+\begin{document}
+  \include{00}
+	\include{01}
+  \include{01Summary}
+  \include{02}
+  \include{02Summary}
+  \include{03}
+  \include{04}
+
+  \nocite{Isaksen_A_Cohomological_Viewpoint_on_Elementary_School_Arithmetic}
+  \nocite{book:Weibel_Homological_algebra}
+\end{document}

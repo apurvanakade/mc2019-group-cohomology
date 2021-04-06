@@ -1,0 +1,225 @@
+\newpage
+\section{Group extensions}
+Today our goal is to understand how addition of 2-digit numbers is equivalent to another abstract construction in group theory called group extensions.
+Using this interpretation and some facts from group cohomology, we will eventually be able to answer the question,
+\begin{q*}
+  What are all the normalized, symmetric, 2-cocycles $c:\bbz/10 \times \bbz/10 \rightarrow \bbz/10$?
+\end{q*}
+\begin{mdframed}
+  \adjustbox{scale=1,center}{%
+    \begin{tikzcd}
+      &\mbox{Adding 2-digit numbers}
+        \ar[ddddr, leftrightarrow]
+        &
+      \\\\\\\\
+      \mbox{\color{white}2-cocycle condition}
+      & & \text{Group extensions}
+    \end{tikzcd}
+  }
+\end{mdframed}
+
+
+
+
+
+\subsection{Review: Group theory}
+All our groups will be abelian unless otherwise specified.
+
+A map between abelian groups $\varphi: G_1 \longrightarrow G_2$ is a group homomorphism if it satisfies
+\begin{align*}
+  \varphi(a + b) = \varphi(a) + \varphi(b)
+\end{align*}
+
+\begin{qbox}(Practice problem)
+  \label{q:groupHomsExamples}
+  Find all the group homomorphisms
+  \begin{enumerate}
+    \item $\bbz \longrightarrow \bbz$,
+    \item $\bbz \longrightarrow \bbz/n$,
+    \item $\bbz/n \longrightarrow \bbz$,
+    \item $\bbz/n \longrightarrow \bbz/n^2$,
+    \item $\bbz/n^2 \longrightarrow \bbz/n$,
+  \end{enumerate}
+  where $n$ is a positive integer.
+\end{qbox}
+
+\begin{qbox}
+  Let $M$ be an abelian group. Describe all the group homomorphisms $ \bbz/n \longrightarrow M$, where $n$ is a positive integer.
+  (This set will show up again when we discuss group cohomology.)
+\end{qbox}
+
+\begin{definition}
+  The \emph{kernel} of a group homomorphism  $\varphi: G_1 \longrightarrow G_2$ is the set of elements $g \in G_1$ such that $\varphi(g) = 0$.
+  \begin{align*}
+    \ker \varphi = \set{ g \in G_1 : \varphi(g) = 0}
+  \end{align*}
+\end{definition}
+
+\begin{definition}
+  The \emph{image} of a group homomorphism  $\varphi: G_1 \longrightarrow G_2$ is the set of elements $\varphi(g) \in G_2$ where $g \in G_1$.
+  \begin{align*}
+    \im \varphi = \set{ \varphi(g) : g \in G_1}
+  \end{align*}
+\end{definition}
+
+
+\begin{qbox}
+  Find the kernel and image of the group homomorphisms you found in Q.\ref{q:groupHomsExamples}.
+\end{qbox}
+
+\begin{qbox}
+  Which of the group homomorphisms in Q.\ref{q:groupHomsExamples} are
+  \begin{enumerate}
+    \item injective (=one-to-one)?
+    \item surjective (=onto)?
+    \item isomorphisms (=one-to-one and onto)?
+  \end{enumerate}
+\end{qbox}
+
+\subsection*{Optional practice problems}
+
+\begin{qbox}
+  Show that the image of a group homomorphism  $\varphi: G_1 \longrightarrow G_2$ is a subgroup of $G_2$.
+\end{qbox}
+
+\begin{qbox}
+  Show that the kernel of a group homomorphism  $\varphi: G_1 \longrightarrow G_2$ is a subgroup of $G_1$.
+\end{qbox}
+
+\begin{qbox}
+  Show that for a group homomorphism $\varphi: G_1 \longrightarrow G_2$ we have $G_1 / \ker \varphi \cong \im \varphi$.
+\end{qbox}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\subsection{Group extensions}
+
+\begin{qbox}
+  \label{q:inclusionMaps}
+  Consider the two inclusion maps,
+  \begin{align*}
+    i_u: \bbz/10 &\longrightarrow \bbz/100  &&& i_t: \bbz/10 & \longrightarrow \bbz/100 \\
+    b &\longmapsto \tens{0}\units{b} &&& a &\longmapsto \tens{a}\units{0}
+  \end{align*}
+  Which of these two maps is a group homomorphism?
+\end{qbox}
+
+\begin{qbox}
+  \label{q:projectionMaps}
+  Consider the two projection maps,
+  \begin{align*}
+    p_u: \bbz/100 &\longrightarrow \bbz/10 &&& p_t: \bbz/100 &\longrightarrow \bbz/10 \\
+    \tens{a}\units{b} &\longmapsto {b} &&& \tens{a}\units{b} &\longmapsto a
+  \end{align*}
+  Which of these two maps is a group homomorphism?
+\end{qbox}
+
+
+\begin{qbox}
+  \label{q:SES1}
+  For the $i$ and $p$ in Questions \ref{q:inclusionMaps} and \ref{q:projectionMaps} that are group homomorphisms, check that
+  \begin{enumerate}
+    \item $i$ is injective,
+    \item $p$ is surjective,
+    \item $\im i = \ker p$.
+  \end{enumerate}
+\end{qbox}
+
+\begin{definition}
+  An \emph{extension} of a group $K$ by $H$ is a group $G$ along with a pair of maps
+  \begin{align*}
+    i: H \longrightarrow G && p: G \longrightarrow K
+  \end{align*}
+  such that
+  \begin{enumerate}
+    \item $i$ is injective,
+    \item $p$ is surjective,
+    \item $\im i = \ker p$.
+  \end{enumerate}
+\end{definition}
+
+This is often written as a \emph{short exact sequence}
+\begin{equation*}
+  \begin{tikzcd}
+    0 \ar[r] & H \ar[r] &  G  \ar[r] & K \ar[r] & 0
+  \end{tikzcd}
+\end{equation*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+Q.\ref{q:SES1} is saying that the following is a SES
+\begin{equation*}
+  \begin{tikzcd}
+    0 \ar[r] & \bbz/10 \ar[r,"i"] &  \bbz/100  \ar[r,"p"] & \bbz/10 \ar[r] & 0 \\
+     & \mbox{tens} \ar[u, equal]  &  \mbox{2-digit numbers}  \ar[u,equal] & \mbox{units}  \ar[u, equal] &
+  \end{tikzcd}
+\end{equation*}
+
+In fact, every group extension arises in this manner.
+Consider an extension of abelian groups,
+\begin{equation*}
+  \begin{tikzcd}
+    0 \ar[r] & H \ar[r,"i"] &  G  \ar[r, "p"] & K \ar[r] & 0.
+  \end{tikzcd}
+\end{equation*}
+i.e.
+\begin{enumerate}
+  \item $i$ is injective,
+  \item $p$ is surjective,
+  \item $\im i = \ker p$.
+\end{enumerate}
+
+For an element $a \in H$, denote by $\tens{a}\units{0} \in G$ the element $i(a)$.
+For an element $b \in K$, let $\tens{0}\units{b}$ be \emph{some} element in $G$ such that $p(\tens{0}\units{b}) = b$.
+Define $\tens{a} \units{b}$ to be the element $\tens{a}\units{0} + \tens{0}\units{b}$ in $G$.
+
+\begin{qbox}
+  Show that $p(\tens{a}\units{0}) = 0$ for any $a \in H$.
+\end{qbox}
+
+% \begin{qbox}
+%   % \begin{enumerate}
+%   %   \item
+%     Check that $\tens{a_1}\units{0} + \tens{a_2}\units{0} = \tens{a_1 + a_2}\units{0}$.
+%     % \item Is it true that $\tens{0}\units{b_1} + \tens{0}\units{b_2} = \tens{0}\units{b_1 + b_2}$?
+%   % \end{enumerate}
+% \end{qbox}
+
+\begin{qbox}
+  \label{q:uniquenessOfDigits}
+  Let $a_1$, $a_2$ be elements in $H$ and let $b_1$, $b_2$ be elements in $K$, show that\hint{Apply $p$ to both sides of $[a_1][b_1] = [a_2][b_2]$.}
+\begin{align*}
+    [a_1][b_1] = [a_2][b_2] \implies a_1 = a_2 \mbox{ and } b_1 = b_2.
+\end{align*}
+\end{qbox}
+
+\begin{qbox}
+  \label{q:existenceOfDigits}
+  Show that for every element $g \in G$, there exist unique elements $a \in H$ and $ b \in K $ such that $g = \units{a}\tens{b}$.
+  \hint{Look at $p(g)$ and $g - \tens{p(g)}\units{0}$.}
+\end{qbox}

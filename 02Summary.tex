@@ -1,0 +1,47 @@
+\section*{Summary of Section 2}
+\begin{enumerate}
+  \item The group $\bbz/100$ of 2-digit integers sits in a short exact sequence/group extension
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \ar[r] & \bbz/10 \ar[r,"i"] &  \bbz/100  \ar[r,"p"] & \bbz/10 \ar[r] & 0 \\
+       & \mbox{tens} \ar[u, equal]  &  \mbox{2-digit numbers}  \ar[u,equal] & \mbox{units}  \ar[u, equal] &
+    \end{tikzcd}
+  \end{equation*}
+
+  \item Every group extension arises in this manner.
+  For an extension of abelian groups,
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \ar[r] & H \ar[r,"i"] &  G  \ar[r, "p"] & K \ar[r] & 0.
+    \end{tikzcd}
+  \end{equation*}
+  every element of $G$ can be uniquely written as $\units{a}\tens{b}$ for some $a \in H$ and $b \in K$.
+\end{enumerate}
+
+
+\vspace{2cm}
+\hrule
+\vspace{2cm}
+
+% Show that for every element $g \in G$, there exist unique elements $a \in H$ and $ b \in K $ such that $g = \units{a}\tens{b}$.
+% \hint{Look at $p(g)$ and $g - [p(g)]\units{0}$.}
+\begin{proof}[Solution to Q.\ref{q:existenceOfDigits}]
+  We will only prove existence as uniqueness follows by Q.\ref{q:uniquenessOfDigits}.
+
+  Consider the element $g \in G$. Let $b = p(g) \in K$ and let \begin{equation*}
+    h = g - \tens{0}\units{b}.
+  \end{equation*}
+  Applying $p$ to both sides we get
+  \begin{align*}
+    p(h)
+    &= p(g - \tens{0}\units{b}) \\
+    &= p(g) - p(\tens{0}\units{b}) && \mbox{ as $p$ is a group homomorphism}\\
+    &= b -b \\
+    &= 0
+  \end{align*}
+  Hence, $h \in \ker p$, which implies that $h \in \im i$.
+  Hence, $ h = i(a) = \tens{a}\units{0}$ for some $a \in H$, giving us
+  \begin{equation*}
+    g = h + \tens{0}\units{b} = \tens{a}\units{0} + \tens{0}\units{b} = \tens{a}\units{b}.
+  \end{equation*}
+\end{proof}

@@ -1,0 +1,250 @@
+\section{Group cohomology}
+Today we will connect the two topics of 2-cocycles and group extensions and finally define the notion of group cohomology.
+% \begin{mdframed}
+\begin{mdframed}
+  \adjustbox{scale=1,center}{%
+    \begin{tikzcd}
+      &\mbox{Adding 2-digit numbers}
+        \ar[ddddl, leftrightarrow]
+        \ar[ddddr, leftrightarrow, end anchor={[xshift=0ex]}]
+        &
+      \\\\\\\\
+      \mbox{2-cocycle condition}\ar[rr, dashed, leftrightarrow]& & \text{Group extensions}
+    \end{tikzcd}
+  }
+\end{mdframed}
+
+
+In the case of two digit numbers, this correspondence looks as follows.
+
+\begin{mdframed}
+  \adjustbox{scale=0.73,center}{%
+    \begin{tikzcd}
+      &\bbz/100 \mbox{ under standard addition}
+        \ar[ddddl, leftrightarrow]
+        \ar[ddddr, leftrightarrow, end anchor={[xshift=0ex]}]
+        &
+      \\\\\\\\
+      \mbox{carry: }\bbz/10 \times \bbz/10 \rightarrow \bbz/10\ar[rr, dashed, leftrightarrow]& & {0 \rightarrow \bbz/10 \rightarrow \bbz/100 \rightarrow \bbz/10 \rightarrow 0}
+    \end{tikzcd}
+  }
+\end{mdframed}
+
+But there is nothing special about $\bbz/10$ or $\bbz/100$ and all our proofs and correspondences can be generalized to arbitrary group extensions.
+
+\begin{mdframed}
+  \adjustbox{scale=0.88,center}{%
+    \begin{tikzcd}
+      & G = \set{\tens{a}\units{b} : a \in H, b \in K}
+        \ar[ddddl, leftrightarrow]
+        \ar[ddddr, leftrightarrow, end anchor={[xshift=0ex]}]
+        &
+      \\\\\\\\
+      c:K \times K \rightarrow H \ar[rr, dashed, leftrightarrow]& & {0 \rightarrow H \rightarrow (G,+_c) \rightarrow K \rightarrow 0}
+    \end{tikzcd}
+  }
+\end{mdframed}
+
+% \end{mdframed}
+% \subsection{Warmup: Commutative diagrams}
+% Algebraists love commutative diagrams.
+% Commutative diagrams simplify a lot of complex arguments and allow us to ``visualize'' how elements move around but
+%
+% The following \emph{commutative diagram} represents the equation $i_2 = \varphi \circ i_1$.
+% \begin{equation*}
+%   \begin{tikzcd}
+%         & G_1 \ar[dd, "\varphi"] \\
+%     H \ar [ru, "i_1"] \ar[dr, "i_2", swap]& \\
+%         & G_2
+%   \end{tikzcd}
+% \end{equation*}
+%
+% \begin{qbox}[Practice problems]
+%   For the following commutative diagram, find the homomorphism (if possible)
+%   \begin{equation*}
+%     \begin{tikzcd}
+%           & \bbz/100 \ar[dd, "\varphi"] \\
+%       \bbz/10 \ar [ru, "i_1"] \ar[dr, "i_2", swap]& \\
+%           & \bbz/100
+%     \end{tikzcd}
+%   \end{equation*}
+%   \begin{enumerate}
+%     \item $i_1 : $
+%   \end{enumerate}
+% \end{qbox}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\subsection{Maps between extensions}
+We will fix two abelian groups $H$ and $K$.
+
+
+Let $G_c$ and $G_d$ be two group extensions of $H$ and $K$, given by the 2-cocycles $c: K \times K \rightarrow H$ and $d:K \times K \rightarrow H$.
+This means that in $G_c$ and $G_d$ the additions are given by
+\begin{align}
+  \label{eq:groupAdditionGroups}
+  \begin{split}
+    \tens{a_1}\units{b_1} +_c \tens{a_2}\units{b_2}
+      &=
+      \tens{a_1 + a_2 + c(b_1, b_2)}\units{b_1 + b_2} \\
+    \tens{a_1}\units{b_1} +_d \tens{a_2}\units{b_2}
+      &=
+      \tens{a_1 + a_2 + d(b_1, b_2)}\units{b_1 + b_2}
+  \end{split}
+\end{align}
+where $a_1$, $a_2 \in H$ and $b_1$, $b_2 \in K$. And there are short exact sequences
+\begin{equation*}
+  \begin{tikzcd}
+    0 \ar[r] & H \ar[r,"i_c"] &  (G_c,+_c)  \ar[r, "p_c"] & K \ar[r] & 0, \\
+    0 \ar[r] & H \ar[r,"i_d"] &  (G_d,+_d)  \ar[r, "p_d"] & K \ar[r] & 0.
+  \end{tikzcd}
+\end{equation*}
+
+
+% Set $S_{100}$ be the set of two digit numbers and let $c: \bbz/10 \times \bbz/10 \rightarrow \bbz/10$ be normalized symmetric 2-cocycle.
+% Denote by $(S_{100}, +_c)$ the abelian group with addition given by
+% \begin{equation*}
+%   \tens{a_1}\units{b_1} + \tens{a_2}\units{b_2}
+%   =
+%   \tens{a_1 + a_2 + c(b_1, b_2)}\units{b_1 + b_2}
+% \end{equation*}
+% Hence $(S_{100}, +_c)$ sits in a short exact sequence
+% \begin{equation*}
+%   \begin{tikzcd}
+%     0 \ar[r] & H \ar[r,"i"] &  (S_{100}, +_c)  \ar[r, "p"] & K \ar[r] & 0
+%   \end{tikzcd}
+% \end{equation*}
+%
+%
+% A group homomorphism between $(S_{100}, +_c)$ and $(S_{100}, +_d)$ is a map $\varphi: (S_{100}, +_c) \rightarrow (S_{100}, +_d)$ that satisfies
+% \begin{align*}
+%   \varphi([a_1][b_1] +_c [a_2][b_2])
+%   &=
+%   \varphi([a_1][b_1]) +_d \varphi([a_2][b_2])
+% \end{align*}
+% There is nothing more we can do here as we do not know anything about the right hand side. So we need to put more restrictions on what group homomorphisms are allowed.
+
+\begin{definition}
+  A \emph{morphism between extensions} is a group homomorphism $\varphi: G_c \rightarrow G_d$ which satisfies the following properties:
+  \begin{enumerate}
+    \item $\varphi$ restricted to $H$ is just the identity map,
+    \item the map induced by $\varphi$ on $K$ is the identity map.
+  \end{enumerate}
+  % If further $\varphi$ is bijective (=one-to-one and onto), we say that $\varphi$ is an \emph{isomorphism}.
+
+  In the language of short exact sequences, this is written as
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \ar[r] & H \ar[r,"i_c"] \ar[d,"\id_H"] &  G_c \ar[d,"\varphi"] \ar[r, "p_c"] & K \ar[r] \ar[d,"\id_K"]& 0 \\
+      0 \ar[r] & H \ar[r,"i_d"] &  G_d  \ar[r, "p_d"] & K \ar[r] & 0
+    \end{tikzcd}
+  \end{equation*}
+\end{definition}
+
+\begin{qbox}
+  What are all the group homomorphisms $\bbz/100 \rightarrow \bbz/100$?
+  Of these, which group homomorphisms are also morphisms from the standard extension $0 \rightarrow \bbz/10 \rightarrow \bbz/100 \rightarrow \bbz/10 \rightarrow 0$ to itself.
+\end{qbox}
+
+\begin{qbox}
+  What are all the group homomorphisms $\bbz/10 \times \bbz/10 \rightarrow \bbz/10 \times \bbz/10$?
+  Of these, which group homomorphisms are also morphisms from the extension $0 \rightarrow \bbz/10 \rightarrow \bbz/10 \times \bbz/10 \rightarrow \bbz/10 \rightarrow 0$ to itself.
+\end{qbox}
+
+\begin{qbox}
+  For $a \in H$ and $b \in K$, show that $\varphi(\tens{a}\units{0}) = \tens{a}\units{0}$ and $\varphi(\tens{0}\units{b}) = \tens{a'}\units{b}$ for some $a' \in H$.
+\end{qbox}
+For each $b \in K$, let $\alpha(b)$ be the element in $H$ such that $p(\tens{0}\units{b}) = \tens{\alpha(b)}\units{b}$, so that $\alpha$ is a function (not a group homomorphism) $K \rightarrow H$.
+
+\begin{qbox}
+  For $a \in H$ and $b \in K$, show that $\varphi(\tens{a}\units{b}) = \tens{a + \alpha(b)}\units{b}$.
+\end{qbox}
+
+\begin{qbox}
+  Show that every morphism between extensions $G_c$ and $G_d$ is bijective.
+\end{qbox}
+
+As we did with group axioms, we want to rewrite what a group homomorphism means in terms of the 2-cocycles $c$ and $d$.
+The group homomorphism $\varphi: (G_1,+_c) \rightarrow (G_2,+_d)$ satisfies the identity
+\begin{align}
+  \label{eq:groupHom}
+  \varphi(\tens{a_1}\units{b_1} +_c \tens{a_2}\units{b_2}) = \varphi(\tens{a_1}\units{b_1}) +_d \varphi(\tens{a_2}\units{b_2})
+\end{align}
+% And the additions $+_c$ and $+_d$ are given by the identities in Equation \eqref{eq:groupAdditionGroups}.
+
+\begin{qbox}
+  \label{q:2coboundaryIdentity}
+  Expand the identity \eqref{eq:groupHom} using the equation \eqref{eq:groupAdditionGroups} and find a new identity involving the functions $c$, $d$, and $h$.
+\end{qbox}
+
+\begin{definition}
+  A \emph{normalized 2-coboundary} is a map $e(b_1,b_2): K \times K \rightarrow H$ such that
+  \begin{equation*}
+    e(b_1, b_2) = \alpha(b_1 + b_2) - \alpha(b_1) - \alpha(b_2)
+  \end{equation*}
+  for some function $h:K \rightarrow H$.
+\end{definition}
+
+\begin{qbox}
+  Check that the identity in Q.\ref{q:2coboundaryIdentity} is saying that $c - d$ is a normalized 2-coboundary.
+\end{qbox}
+
+\begin{qbox}
+  Show that a normalized 2-coboundary is also a normalized, symmetric, 2-cocycle.
+\end{qbox}
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\subsection{Group cohomology}
+\begin{qbox}
+  Show that the set of normalized, symmetric, 2-cocycles $c:K \times K \rightarrow H$ forms a group under addition.
+  This group is denoted $\calz^2(K;H)$.
+\end{qbox}
+
+\begin{qbox}
+  Show that the set of normalized 2-coboundaries $c: K \times K \rightarrow H$ forms a group under addition.
+  This group is denoted $\calb^2(K; H)$.
+\end{qbox}
+
+\begin{qbox}
+  Show that $\calb^2(K; H)$ is a subgroup of $\calz^2(K;H)$.
+\end{qbox}
+
+\begin{definition}
+  The second cohomology group of $K$ with coefficients $H$ is defined as
+  \begin{align*}
+    H^2(K;H) := \calz^2(K;H) / \calb^2(K; H)
+  \end{align*}
+\end{definition}
+
+We say that two extensions are equivalent if there is a morphism between them.
+\begin{qbox}
+  Show that this defines an equivalence relation on the set of group extensions.
+\end{qbox}
+
+Denote by $\ext^1(K;H)$ the equivalence classes of extensions under this equivalence relation.
+
+\begin{qbox}
+  Prove that there is a 1-1 correspondence between $H^2(K;H)$ and $\ext^1(K;H)$.
+\end{qbox}

@@ -1,0 +1,15 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mycite}
+
+\RequirePackage{cite}
+\RequirePackage{hyperref}
+\RequirePackage{doi}
+
+\@ifclassloaded{article}%
+  {\RequirePackage[nottoc]{tocbibind}}%%this clashes with asmart documentclass
+  {}
+
+\AtEndDocument{
+  \bibliographystyle{style/halpha}
+  \bibliography{style/references.bib}
+}
